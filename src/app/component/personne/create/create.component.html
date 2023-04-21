@@ -1,16 +1,11 @@
-
-<div class="card flex justify-content-center">
-    <div class="flex flex-column gap-2">
-        <label htmlFor="username">Username</label>
-        <input pInputText id="username" aria-describedby="username-help" (ngModel)="value" />
-        <small id="username-help">Enter your username to reset your password.</small>
-
-        <label htmlFor="username">Username</label>
-        <input pInputText id="username" aria-describedby="username-help" (ngModel)="value" />
-        <small id="username-help">Enter your username to reset your password.</small>
-
-        <label htmlFor="username">Username</label>
-        <input pInputText id="username" aria-describedby="username-help" (ngModel)="value" />
-        <small id="username-help">Enter your username to reset your password.</small>
-    </div>
-</div>
+<p-card  styleClass="user-form" class="flex justify-content-center">
+    <form class="form"[formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <label htmlFor="username">Nom</label><br>
+        <input pInputText type="text" required formControlName="nom" id="nom"  name="nom" placeholder=" Votre Nom" /><br><br>
+        <label htmlFor="username">Prénom</label><br>
+        <input pInputText type="text" placeholder="Votre Prénom" required formControlName ="prenom" /><br><br>
+        <label htmlFor="username">Age</label><br>
+        <input pInputText type="number" placeholder="Votre Age" required formControlName ="age" /><br><br>
+        <p-button label="Submit" type="submit"></p-button>
+    </form>
+</p-card>

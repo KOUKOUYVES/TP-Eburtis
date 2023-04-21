@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
     activeItem !: MenuItem;
     ngOnInit() {
         this.items = [
-            { label: 'Home', icon: 'pi pi-fw pi-home',routerLink :['/'] },
+            { label: 'Home', icon: 'pi pi-fw pi-home',routerLink :['/home'] },
             { label: 'Personne', icon: 'pi pi-fw pi-user',routerLink :['/liste-personnes']},
         ];
 
