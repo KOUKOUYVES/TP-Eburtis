@@ -54,15 +54,15 @@
 
         <div class="form-group ">
             <label htmlFor="username" class="label">Departement</label><br>
-            <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f['departement_id'].errors }" name="departement_id" id="departement_id" formControlName="departement_id" aria-label=".form-select-lg example">
+            <select type="text" class="form-control" [(ngModel)]="departement.id" [ngClass]="{ 'is-invalid': submitted && f['departement'].errors }" name="departement" id="departement" formControlName="departement" aria-label=".form-select-lg example">
                 <option selected>Choisir un Departement</option>
-                <option value="1">Admin</option>
-                <option value="2">Manager</option>
-                <option value="3">Sales Person</option>
+                <option *ngFor="let departements of departement">
+                    {{departements.designation}} 
+                </option>
             </select>
             <i class="mdi mdi-account"></i>
-            <div *ngIf="submitted && f['departement_id'].errors" class="invalid-feedback">
-                <div *ngIf="f['departement_id'].errors['required']">Votre Age est obligatoire</div>
+            <div *ngIf="submitted && f['departement'].errors" class="invalid-feedback">
+                <div *ngIf="f['departement'].errors['required']">Le Département est obligatoire</div>
             </div>
         </div><br>
      <span class="alert">Invalid Credentials</span>

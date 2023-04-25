@@ -14,11 +14,6 @@ export class PersonneService {
           return this.http.get(this.baseUrl + 'getAllPersonnes');
         }
 
-        getAllDepartements() {
-          return this.http.get(this.baseUrl + 'getAllDepartements');
-        }
-
-
         createPersonne(personne:any) {
           return this.http.post(this.baseUrl + 'addPersonne', personne);
         } 
@@ -37,8 +32,5 @@ export class PersonneService {
           return this.http.delete(this.baseUrl+'personneDelete/'+ id);  
         }
 
-        getFilesystem() {
-          return Promise.resolve(this.getAllPersonne());
-      }
   
 }
