@@ -1,11 +1,71 @@
-<p-card  styleClass="user-form" class="flex justify-content-center">
+<!-- <p-card  styleClass="user-form" class="flex justify-content-center">
     <form class="form"[formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <label htmlFor="username">Nom</label><br>
-        <input pInputText type="text" required formControlName="nom" id="nom"  name="nom" placeholder=" Votre Nom" /><br><br>
+        <input pInputText type="text" [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }" required formControlName="nom" id="nom"  name="nom" placeholder=" Votre Nom" /><br><br>
+        <div *ngIf="submitted && f['nom'].errors" class="invalid-feedback">
+            <div *ngIf="f['nom'].errors['required']"> Le nom est obligatoire</div>
+         </div>
+        
         <label htmlFor="username">Prénom</label><br>
-        <input pInputText type="text" placeholder="Votre Prénom" required formControlName ="prenom" /><br><br>
+        <input pInputText type="text" placeholder="Votre Prénom" [ngClass]="{ 'is-invalid': submitted && f['prenom'].errors }" name="prenom" required formControlName ="prenom" /><br><br>
+        <div *ngIf="submitted && f['prenom'].errors" class="invalid-feedback">
+            <div *ngIf="f['prenom'].errors['required']"> Le prénom est obligatoire</div>
+         </div>
+        
         <label htmlFor="username">Age</label><br>
-        <input pInputText type="number" placeholder="Votre Age" required formControlName ="age" /><br><br>
+        <input pInputText type="number" placeholder="Votre Age" name="age" [ngClass]="{ 'is-invalid': submitted && f['age'].errors }" required formControlName ="age" /><br><br>
+        <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
+            <div *ngIf="f['age'].errors['required']"> L'âge est obligatoire</div>
+         </div>
         <p-button label="Submit" type="submit"></p-button>
     </form>
-</p-card>
+</p-card> -->
+
+
+<div class="login-form">
+    <h1>Inscription</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label htmlFor="username" class="label">Nom</label><br>
+            <input type="text" name="nom" formControlName="nom" [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }" class="form-control" placeholder="Nom " id="nom">
+            <div *ngIf="submitted && f['nom'].errors" class="invalid-feedback">
+                <div *ngIf="f['nom'].errors['required']"> Le nom est obligatoire</div>
+            </div>
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Prénoms</label><br>
+            <input type="text" formControlName="prenom" name="prenom" [ngClass]="{ 'is-invalid': submitted && f['prenom'].errors }" class="form-control" placeholder="Prénom " id="prenom">
+            <i class="mdi mdi-account"></i>
+            <div *ngIf="submitted && f['prenom'].errors" class="invalid-feedback">
+                <div *ngIf="f['prenom'].errors['required']"> Le nom est obligatoire</div>
+            </div>
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Age</label><br>
+            <input type="number" formControlName="age" name="age" [ngClass]="{ 'is-invalid': submitted && f['age'].errors }" class="form-control" placeholder="Age " id="age">
+            <i class="mdi mdi-account"></i>
+            <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
+                <div *ngIf="f['age'].errors['required']">Votre Age est obligatoire</div>
+            </div>
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Departement</label><br>
+            <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f['departement_id'].errors }" name="departement_id" id="departement_id" formControlName="departement_id" aria-label=".form-select-lg example">
+                <option selected>Choisir un Departement</option>
+                <option value="1">Admin</option>
+                <option value="2">Manager</option>
+                <option value="3">Sales Person</option>
+            </select>
+            <i class="mdi mdi-account"></i>
+            <div *ngIf="submitted && f['departement_id'].errors" class="invalid-feedback">
+                <div *ngIf="f['departement_id'].errors['required']">Votre Age est obligatoire</div>
+            </div>
+        </div><br>
+     <span class="alert">Invalid Credentials</span>
+    <button type="submit" class="log-btn" ><i class="mdi mdi-account"></i> Save</button>
+    </form>
+</div>

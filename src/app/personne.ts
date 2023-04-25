@@ -1,6 +1,7 @@
 export class Personne {
-    id ?: number;
+    id?: number;
     nom?: string;
     prenom?: string;
     age?: number;
+    departement ?: string;
 }

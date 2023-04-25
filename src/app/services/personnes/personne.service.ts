@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Personne } from 'src/app/personne';
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +9,36 @@ export class PersonneService {
 
   constructor(private http :HttpClient ) { }
   baseUrl: string = 'http://localhost:8080/';
-  getData() {
-    const headers = new Htt().set('Access-Control-Allow-Origin', '*');
-    return this.http.get('http://localhost:8000/', { headers });
-  }
+  
         getAllPersonne() {
-          return this.http.get(this.baseUrl + 'getPersonnesAll');
+          return this.http.get(this.baseUrl + 'getAllPersonnes');
         }
 
+        getAllDepartements() {
+          return this.http.get(this.baseUrl + 'getAllDepartements');
+        }
+
+
         createPersonne(personne:any) {
-          return this.http.post(this.baseUrl + 'add-personne', personne);
+          return this.http.post(this.baseUrl + 'addPersonne', personne);
         } 
 
-        updatePersonne(id: number) {
-          return this.http.put(this.baseUrl +'personneUpdate/', id );
+        updatePersonne(id:number, personne:any) {
+          return this.http.put<Personne>(this.baseUrl +'updatePersonneById/'+ id, personne);
+        }
+
+        getFindIdPersonne(id:any){
+          console.log(id);
+          return this.http.get(this.baseUrl +'personne/'+ id)
         }
 
         deletePersonne(id:number) {
           console.log(id);
-          return this.http.delete(this.baseUrl+'deletePersonne/'+ id);  
+          return this.http.delete(this.baseUrl+'personneDelete/'+ id);  
         }
+
+        getFilesystem() {
+          return Promise.resolve(this.getAllPersonne());
+      }
   
 }

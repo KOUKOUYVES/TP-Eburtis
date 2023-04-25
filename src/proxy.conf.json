@@ -1,0 +1,7 @@
+{
+    "/api/*" : {
+        "cible" : " http://localhost:8080 " ,
+        "sécurisé" : false ,
+        "logLevel" : " débogage "
+    }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { PersonneService } from 'src/app/services/personnes/personne.service';
 @Component({
@@ -7,8 +7,10 @@ import { PersonneService } from 'src/app/services/personnes/personne.service';
   styleUrls: ['./liste.component.css']
 })
 export class ListeComponent implements OnInit  {
+  
     personnes!: any[];
     item!: MenuItem[];
+    @Input() searchText: any;
 
     constructor(private personneService: PersonneService) {}
 

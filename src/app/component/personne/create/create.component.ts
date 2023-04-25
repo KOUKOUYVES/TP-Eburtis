@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup,FormBuilder,Validators } from "@angular/forms";
+import {FormBuilder,Validators } from "@angular/forms";
 import { PersonneService } from 'src/app/services/personnes/personne.service';
 
 @Component({
@@ -25,6 +25,8 @@ export class CreateComponent implements OnInit{
           nom: ['', Validators.required],
           prenom: ['', Validators.required],
           age: ['', Validators.required],
+          departement_id: ['', Validators.required],
+
       });
   }
   // getter pratique pour un accès facile aux champs du formulaire
@@ -32,10 +34,11 @@ export class CreateComponent implements OnInit{
     return this.registerForm.controls; 
     }
     onSubmit(){
+      ///retourne le formulaire s'il est invalid
       if (this.registerForm.invalid) {
                 return;
             }
-      // console.log(this.registerForm.value);
+      // c'est ici q'uon appel la methode qui se trouve dans notre service
       this.personneService.createPersonne(this.registerForm.value).subscribe(
         (data:any)=>{
           console.log(data);
@@ -44,9 +47,9 @@ export class CreateComponent implements OnInit{
        error => {  
          alert(error);
        });
-      
   }
 
+  ////vider le formulaire apres enregistrement
   onReset() {
       this.submitted = false;
       this.registerForm.reset();

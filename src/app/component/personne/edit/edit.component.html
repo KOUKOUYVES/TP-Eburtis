@@ -1,1 +1,35 @@
-<p>edit works!</p>
+<div></div>
+<div class="login-form">
+    <h1>Modification</h1>
+    <form [formGroup]="editFormPersonne" (ngSubmit)="onEdit()">
+
+        <div class="form-group">
+            <label htmlFor="username" class="label">Nom</label><br>
+            <input type="text"[(ngModel)]="personne.nom" name="nom" formControlName="nom"
+             [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }" class="form-control" placeholder="Nom">
+            <div *ngIf="submitted && f['nom'].errors" class="invalid-feedback">
+                <div *ngIf="f['nom'].errors['required']"> Le nom est obligatoire</div>
+            </div>
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Prénoms</label><br>
+            <input type="text" [(ngModel)]="personne.prenom" formControlName="prenom" name="prenom" [ngClass]="{ 'is-invalid': submitted && f['prenom'].errors }" class="form-control" placeholder="Prénom " id="prenom">
+            <i class="mdi mdi-account"></i>
+            <div *ngIf="submitted && f['prenom'].errors" class="invalid-feedback">
+                <div *ngIf="f['prenom'].errors['required']"> Le nom est obligatoire</div>
+            </div>
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Age</label><br>
+            <input type="number" [(ngModel)]="personne.age" formControlName="age" name="age" [ngClass]="{ 'is-invalid': submitted && f['age'].errors }" class="form-control" placeholder="Age " id="age">
+            <i class="mdi mdi-account"></i>
+            <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
+                <div *ngIf="f['age'].errors['required']">Votre Age est obligatoire</div>
+            </div>
+        </div><br>
+     <span class="alert">Invalid Credentials</span>
+    <button type="submit" class="log-btn" ><i class="mdi mdi-account"></i> Save</button>
+    </form>
+</div>
