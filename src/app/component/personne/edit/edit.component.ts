@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
+import { Departement } from 'src/app/departement';
 import { Personne } from 'src/app/personne';
+import { DepartementService } from 'src/app/services/departements/departement.service';
 import { PersonneService } from 'src/app/services/personnes/personne.service';
 
 @Component({
@@ -14,6 +16,7 @@ export class EditComponent implements OnInit{
   personne!: Personne;
   editFormPersonne!: FormGroup;
   submitted = false;
+  departement!: Departement[];
 
      
   /*------------------------------------------
@@ -25,7 +28,8 @@ export class EditComponent implements OnInit{
     private formBuilder: FormBuilder,
     private router: Router,
     private personneService:PersonneService,
-    private route : ActivatedRoute
+    private route : ActivatedRoute,
+    private departmentService: DepartementService
   ) { }
      
   /**
@@ -35,6 +39,7 @@ export class EditComponent implements OnInit{
    */
   ngOnInit(): void {
     this.recupereUserById()
+    this.getListeDepartement()
     this.editFormPersonne = new FormGroup({
       nom:new FormControl('', [Validators.required]),
       prenom:new FormControl('', Validators.required),
@@ -73,5 +78,17 @@ export class EditComponent implements OnInit{
   onReset(){
     this.submitted = false;
     this.editFormPersonne.reset();
-  }    
+  }   
+  
+  getListeDepartement() {
+    this.departmentService.getAllDepartements().subscribe({
+      next: (reponse: any) => {
+        this.departement = reponse;
+        console.log(this.departement);
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
 }

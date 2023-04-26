@@ -1,4 +1,4 @@
-<div></div>
+<!-- <div></div>
 <div class="login-form">
     <h1>Modification</h1>
     <form [formGroup]="editFormPersonne" (ngSubmit)="onEdit()">
@@ -32,4 +32,62 @@
      <span class="alert">Invalid Credentials</span>
     <button type="submit" class="log-btn" ><i class="mdi mdi-account"></i> Save</button>
     </form>
+</div> -->
+
+
+<!-- <p-card  styleClass="user-form" class="flex justify-content-center">
+    <form class="form"[formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <label htmlFor="username">Nom</label><br>
+        <input pInputText type="text" [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }" required [(ngModel)]="nom" id="nom"  name="nom" placeholder=" Votre Nom" /><br><br>
+        <div *ngIf="submitted && f['nom'].errors" class="invalid-feedback">
+            <div *ngIf="f['nom'].errors['required']"> Le nom est obligatoire</div>
+         </div>
+        
+        <label htmlFor="username">Prénom</label><br>
+        <input pInputText type="text" placeholder="Votre Prénom" [ngClass]="{ 'is-invalid': submitted && f['prenom'].errors }" name="prenom" required [(ngModel)] ="prenom" /><br><br>
+        <div *ngIf="submitted && f['prenom'].errors" class="invalid-feedback">
+            <div *ngIf="f['prenom'].errors['required']"> Le prénom est obligatoire</div>
+         </div>
+        
+        <label htmlFor="username">Age</label><br>
+        <input pInputText type="number" placeholder="Votre Age" name="age" [ngClass]="{ 'is-invalid': submitted && f['age'].errors }" required [(ngModel)] ="age" /><br><br>
+        <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
+            <div *ngIf="f['age'].errors['required']"> L'âge est obligatoire</div>
+         </div>
+        <p-button label="Submit" type="submit"></p-button>
+    </form>
+</p-card> -->
+
+
+<div class="login-form">
+    <h1>Inscription</h1>
+    <form>
+
+        <div class="form-group">
+            <label htmlFor="username" class="label">Nom</label><br>
+            <input type="text" [(ngModel)]="personne.nom" name="nom" class="form-control">
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Prénoms</label><br>
+            <input type="text" [(ngModel)]="personne.prenom" name="prenom"  class="form-control">
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Age</label><br>
+            <input type="number" [(ngModel)]="personne.age"  name="age" class="form-control" >
+        </div><br>
+
+        <div class="form-group ">
+            <label htmlFor="username" class="label">Departement</label><br>
+            <select  class="form-control" [(ngModel)]="personne.departement" name="departement_id">
+                <option value="">Choisir un Departement</option>
+                <option [ngValue]="departement" *ngFor="let departement of departement">
+                    {{departement?.designation}} 
+                </option>
+            </select>
+        </div><br>
+    <button type="submit" (click)=onEdit() class="log-btn" ><i class="mdi mdi-account"></i> Save</button>
+    </form>
 </div>
+

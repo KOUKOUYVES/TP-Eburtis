@@ -17,8 +17,10 @@ import { EditComponent } from './component/personne/edit/edit.component';
 import { ListeComponent } from './component/personne/liste/liste.component';
 import {HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonneComponent } from './component/personne/personne.component';
+import { CommonModule } from '@angular/common';
+
 
 
 
@@ -44,7 +46,9 @@ import { PersonneComponent } from './component/personne/personne.component';
     ButtonModule,
     TableModule,
     CardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

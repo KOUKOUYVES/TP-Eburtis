@@ -15,7 +15,7 @@ export class PersonneService {
         }
 
         createPersonne(personne:any) {
-          return this.http.post(this.baseUrl + 'addPersonne', personne);
+          return this.http.post<any>(this.baseUrl + 'addPersonne', personne);
         } 
 
         updatePersonne(id:number, personne:any) {
@@ -24,7 +24,7 @@ export class PersonneService {
 
         getFindIdPersonne(id:any){
           console.log(id);
-          return this.http.get(this.baseUrl +'personne/'+ id)
+          return this.http.get(this.baseUrl +'getPersonneById/'+ id)
         }
 
         deletePersonne(id:number) {

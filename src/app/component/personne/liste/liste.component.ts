@@ -3,6 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { Departement } from 'src/app/departement';
 import { DepartementService } from 'src/app/services/departements/departement.service';
 import { PersonneService } from 'src/app/services/personnes/personne.service';
+import { Personne } from 'src/app/personne';
 @Component({
   selector: 'app-liste',
   templateUrl: './liste.component.html',
@@ -10,10 +11,10 @@ import { PersonneService } from 'src/app/services/personnes/personne.service';
 })
 export class ListeComponent implements OnInit  {
   
-    personnes!: any[];
+    personnes: Personne[] = [];
     item!: MenuItem[];
-    @Input() searchText: any;
     departement!: Departement;
+    cols: any[] = [];
 
     constructor(
       private personneService: PersonneService,
@@ -22,6 +23,18 @@ export class ListeComponent implements OnInit  {
 
     ngOnInit() {
         this.getListePersonnes();
+        this.trieParPersonne()
+    }
+
+    trieParPersonne(){
+      this.cols = [
+          { field: "nom", header: "First Name" },
+          { field: "prenom", header: "Last Name" },
+          { field: "age", header: "Age" },
+          { field: "designation", header: "Departement" },
+
+        ];
+      this.personnes = []
     }
 
     //Cette fonction permet de récupérer la liste des departements depuis le service
