@@ -6,10 +6,9 @@
                 <p-button label="New" routerLink="/create-personne"></p-button>
             </div>
         </ng-template>
-
         <ng-template pTemplate="end" >
             <input type="text" type="text" 
-            (input)="myTab.filterGlobal($event.target, 'contains')" 
+            (input)="myTab.filterGlobal($any($event.target).value,'contains')" 
             autocomplete="on" pInputText placeholder="Recherche" style="width:auto" class="w-full" />
         </ng-template>
     </p-menubar>
@@ -18,7 +17,8 @@
 
 <p-table #myTab [value]="personnes"
         [scrollable]="false" 
-        [globalFilterFields]="['nom', 'prenom', 'age','designation']" 
+        [filterDelay]="0"
+        [globalFilterFields]="['nom']" 
         [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>

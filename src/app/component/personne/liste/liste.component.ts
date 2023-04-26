@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Departement } from 'src/app/departement';
 import { DepartementService } from 'src/app/services/departements/departement.service';
 import { PersonneService } from 'src/app/services/personnes/personne.service';
 import { Personne } from 'src/app/personne';
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-liste',
   templateUrl: './liste.component.html',
@@ -11,10 +12,11 @@ import { Personne } from 'src/app/personne';
 })
 export class ListeComponent implements OnInit  {
   
-    personnes: Personne[] = [];
+    personnes!: Personne[];
     item!: MenuItem[];
     departement!: Departement;
     cols: any[] = [];
+    @ViewChild('myTab') table!: Table;
 
     constructor(
       private personneService: PersonneService,
@@ -25,13 +27,13 @@ export class ListeComponent implements OnInit  {
         this.getListePersonnes();
         this.trieParPersonne()
     }
-
+//fonction pour fair un trie dans le tableau
     trieParPersonne(){
       this.cols = [
-          { field: "nom", header: "First Name" },
-          { field: "prenom", header: "Last Name" },
-          { field: "age", header: "Age" },
-          { field: "designation", header: "Departement" },
+          { field: "nom", header: "First Name" }
+          // { field: "prenom", header: "Last Name" },
+          // { field: "age", header: "Age" },
+          // { field: "designation", header: "Departement" },
 
         ];
       this.personnes = []
