@@ -83,7 +83,7 @@
             <select  class="form-control" [(ngModel)]="personne.departement" name="departement_id">
                 <option value="">Choisir un Departement</option>
                 <option [ngValue]="departement" *ngFor="let departement of departement">
-                    {{departement?.designation}} 
+                    {{departement.designation}}
                 </option>
             </select>
         </div><br>

@@ -18,14 +18,19 @@
 <p-table #myTab [value]="personnes"
         [scrollable]="false" 
         [filterDelay]="0"
-        [globalFilterFields]="['nom']" 
+        [globalFilterFields]="['nom','age']" 
         [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
             <th>N°</th>
-            <th>Nom</th>
+                <th pSortableColumn="nom">
+                    Nom
+                <p-sortIcon></p-sortIcon>
+            </th>
             <th>Prénom</th>
-            <th>Age</th>
+            <th >Age
+                <p-columnFilter type="numeric" field="age" display="menu"></p-columnFilter>
+            </th>
             <th>Département</th>
             <th>Actions</th>
         </tr>

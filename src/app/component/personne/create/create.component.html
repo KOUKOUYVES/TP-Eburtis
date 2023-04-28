@@ -25,25 +25,24 @@
 <div class="login-form">
     <h1>Inscription</h1>
     <form>
-
         <div class="form-group">
             <label htmlFor="username" class="label">Nom</label><br>
-            <input type="text" [(ngModel)]="personne.nom" name="nom" class="form-control">
+            <input type="text"  [(ngModel)]="personne.nom" name="nom" class="form-control">
         </div><br>
 
         <div class="form-group ">
             <label htmlFor="username" class="label">Prénoms</label><br>
-            <input type="text" [(ngModel)]="personne.prenom" name="prenom"  class="form-control">
+            <input type="text" required [(ngModel)]="personne.prenom" name="prenom"  class="form-control">
         </div><br>
 
         <div class="form-group ">
             <label htmlFor="username" class="label">Age</label><br>
-            <input type="number" [(ngModel)]="personne.age"  name="age" class="form-control" >
+            <input type="number" required [(ngModel)]="personne.age"  name="age" class="form-control" >
         </div><br>
 
         <div class="form-group ">
             <label htmlFor="username" class="label">Departement</label><br>
-            <select  class="form-control" [(ngModel)]="personne.departement" name="departement_id">
+            <select  class="form-control" required [(ngModel)]="personne.departement" name="departement_id">
                 <option value="">Choisir un Departement</option>
                 <option [ngValue]="departement" *ngFor="let departement of departement">
                     {{departement?.designation}} 

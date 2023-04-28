@@ -59,9 +59,6 @@ export class EditComponent implements OnInit{
    *
    * @return response()
    */
-  get f(){
-    return this.editFormPersonne.controls;
-  }
      
   /**
    * Write code on Method

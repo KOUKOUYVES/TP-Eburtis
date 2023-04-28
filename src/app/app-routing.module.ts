@@ -4,6 +4,7 @@ import { ListeComponent } from './component/personne/liste/liste.component';
 import { HomeComponent } from './component/home/home.component';
 import { CreateComponent } from './component/personne/create/create.component';
 import { EditComponent } from './component/personne/edit/edit.component';
+import { PersonneComponent } from './component/personne/personne.component';
 
 const routes: Routes = [
 
@@ -15,6 +16,11 @@ const routes: Routes = [
   {
     path: 'liste-personnes',
     component: ListeComponent 
+  },
+
+  {
+    path: 'personne',
+    component: PersonneComponent 
   },
 
   {

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { FilterMatchMode, MenuItem, PrimeNGConfig} from 'primeng/api';
 import { Departement } from 'src/app/departement';
 import { DepartementService } from 'src/app/services/departements/departement.service';
 import { PersonneService } from 'src/app/services/personnes/personne.service';
@@ -19,29 +19,39 @@ export class ListeComponent implements OnInit  {
     @ViewChild('myTab') table!: Table;
 
     constructor(
-      private personneService: PersonneService,
-      private departmentService: DepartementService,
+      private personneServices: PersonneService,
+      private departmentServices: DepartementService,
+      private config : PrimeNGConfig
+
       ) {}
 
     ngOnInit() {
         this.getListePersonnes();
         this.trieParPersonne()
+
+        this.config.filterMatchModeOptions = {
+          text: [],
+          numeric: [
+              FilterMatchMode.LESS_THAN,
+              FilterMatchMode.GREATER_THAN,
+          ],
+          date: []
+      }
     }
 //fonction pour fair un trie dans le tableau
     trieParPersonne(){
       this.cols = [
-          { field: "nom", header: "First Name" }
-          // { field: "prenom", header: "Last Name" },
-          // { field: "age", header: "Age" },
-          // { field: "designation", header: "Departement" },
+          { field: "nom", header: "First Name" },
+          { field: "age", header: "Age" },
 
         ];
-      this.personnes = []
     }
+
+    
 
     //Cette fonction permet de récupérer la liste des departements depuis le service
   getListeDepartement() {
-    this.departmentService.getAllDepartements().subscribe({
+    this.departmentServices.getAllDepartements().subscribe({
       next: (reponse: any) => {
         this.departement = reponse;
       },
@@ -53,7 +63,7 @@ export class ListeComponent implements OnInit  {
 
 //  Cette fonction permet de récupérer la liste des personnes depuis le service
     getListePersonnes(){
-      this.personneService.getAllPersonne().subscribe(
+      this.personneServices.getAllPersonne().subscribe(
         (result:any)=>{
           console.log(result)
           this.personnes = result;          
@@ -62,7 +72,7 @@ export class ListeComponent implements OnInit  {
     }
 // Cette fonction permet de supprimer une personne
     deletePersonne(id:any){
-      this.personneService.deletePersonne(id).subscribe(data=>{
+      this.personneServices.deletePersonne(id).subscribe(data=>{
         window.location.reload()
       })
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonneService } from 'src/app/services/personnes/personne.service';
 import { DepartementService } from 'src/app/services/departements/departement.service';
 import { Departement } from 'src/app/departement';
@@ -18,6 +18,7 @@ export class CreateComponent implements OnInit {
   data = this.vals.split(',');
   departement!: Departement[];
   personne!: Personne;
+  myform!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,20 +29,26 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.getListeDepartement();
-    this.personne = {
-      nom: '',
-      prenom: '',
-      age: 0,
-      departement: {},
-    };
-  }
-  // getter pratique pour un accès facile aux champs du formulaire
-  get f() {
-    return this.registerForm.controls;
+    this.verificationInputForm();
   }
 
-  onSubmit() {  
+  // methode permettant de verifier les input du formulaires
+  verificationInputForm(){
+    this.myform = new FormGroup({
+      nom:new FormControl('', [Validators.required]),
+      prenom:new FormControl('', Validators.required),
+      age:new FormControl('', Validators.required),
+      departement:new FormControl('', Validators.required)
+    }); 
+  }
+
+  // // getter pratique pour un accès facile aux champs du formulaire
+  // get f() {
+  //   return this.registerForm.controls;
+  // }
+
   // c'est ici q'uon appel la methode qui se trouve dans notre service
+  onSubmit() {  
     this.personneService.createPersonne(this.personne).subscribe(
       (data: any) => {
         console.log(data);
@@ -52,17 +59,23 @@ export class CreateComponent implements OnInit {
       }
     );
   }
-
   ////vider le formulaire apres enregistrement
   onReset() {
     this.submitted = false;
     this.registerForm.reset();
   }
 
+  //la liste des departements
   getListeDepartement() {
+      this.personne = {
+        nom: '',
+        prenom: '',
+        age: 0,
+        departement: {},
+      };
     this.departmentService.getAllDepartements().subscribe({
-      next: (reponse: any) => {
-        this.departement = reponse;
+      next: (data: any) => {
+        this.departement = data;
         console.log(this.departement);
       },
       error: (error: any) => {
